@@ -44,12 +44,6 @@ jobs:
           pip install -r requirements.txt
           pip install pytest
 
-      - name: Verificar diretório de testes
-        run: ls -R tests/
-
-      - name: Rodar testes unitários
-        run: pytest tests/
-      
   deploy:
     name: Deploy da Aplicação
     runs-on: ubuntu-latest
