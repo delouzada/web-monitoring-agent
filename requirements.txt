@@ -8,3 +8,4 @@ apscheduler
 apscheduler[asyncio]
 ps
 pytest
+psycopg2

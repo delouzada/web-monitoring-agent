@@ -1,11 +1,19 @@
 import pytest
+import sys
+import os
 from fastapi.testclient import TestClient
-from src.main import app  # Certifique-se de que a API est· sendo importada corretamente
+
+
+from src.domain.repositories import NetworkTestResultRepository
+from src.domain.entities import NetworkTestResult  # Correta
+from src.application.services.network_test_service import NetworkTestService
+from src.infrastructure.persistence.connection_factory import SessionLocal
+from src.main import app 
 
 client = TestClient(app)
 
 def test_root():
-    """Testa se a API est· rodando corretamente"""
+    """Testa se a API est√° rodando corretamente"""
     response = client.get("/")
     assert response.status_code == 200
     assert response.json() == {"message": "API de Monitoramento Ativa"}
@@ -17,7 +25,7 @@ def test_get_network_tests():
     assert isinstance(response.json(), list)  # O retorno deve ser uma lista
 
 def test_create_network_test():
-    """Testa a criaÁ„o de um novo teste de rede"""
+    """Testa a cria√ßao de um novo teste de rede"""
     payload = {
         "site": "google.com",
         "latency": 20.5,
