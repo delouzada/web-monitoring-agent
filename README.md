@@ -1,62 +1,62 @@
 # Web Monitoring Agent
 
-## ?? Sobre o Projeto
+## 🚀 Sobre o Projeto
 
-O **web-monitoring-agent** � uma aplica��o FastAPI que realiza testes autom�ticos de monitoramento de rede para p�ginas web selecionadas:
+O **web-monitoring-agent** é uma aplicação FastAPI que realiza testes automáticos de monitoramento de rede para páginas web selecionadas:
 
-- **Ping** (lat�ncia e perda de pacotes).
-- **HTTP Test** (tempo de carregamento e c�digos HTTP de retorno).
+- **Ping** (latência e perda de pacotes).
+- **HTTP Test** (tempo de carregamento e códigos HTTP de retorno).
 
-Os dados coletados s�o armazenados em um banco de dados PostgreSQL e disponibilizados atrav�s de dashboards intuitivos no Grafana.
+Os dados coletados são armazenados em um banco de dados PostgreSQL e disponibilizados através de dashboards intuitivos no Grafana.
 
 ---
 
-### ??? Requisitos do projeto
+### 🛠️ Requisitos do projeto
 
-- Realizar testes peri�dicos nas URLs:
+- Realizar testes periódicos nas URLs:
   - `google.com`
   - `youtube.com`
   - `rnp.br`
 
-### ??? Banco de dados:
+### 🗃️ Banco de dados:
 
 - **PostgreSQL**
 
 ---
 
-### ?? Estrutura do projeto
+### 📁 Estrutura do projeto
 
 ```bash
 web-monitoring-agent/
-??? docker-compose.yml
-??? Dockerfile
-??? requirements.txt
-??? src
-    ??? main.py
-    ??? application
-    ?   ??? dtos.py
-    ?   ??? services
-    ?       ??? network_test_service.py
-    ??? domain
-    ?   ??? entities.py
-    ?   ??? repositories.py
-    ??? infrastructure
-    ?   ??? persistence
-    ?   ?   ??? config.py
-    ?   ?   ??? init_db.py
-    ?   ??? grafana
-    ?       ??? provisioning
-    ?           ??? datasources.yaml
-    ?           ??? dashboards.yaml
-    ?           ??? dashboards
-    ?               ??? network_monitoring.json
-    ??? presentation
-        ??? network_controller.py
+├── docker-compose.yml
+├── Dockerfile
+├── requirements.txt
+└── src
+    ├── main.py
+    ├── application
+    │   ├── dtos.py
+    │   └── services
+    │       └── network_test_service.py
+    ├── domain
+    │   ├── entities.py
+    │   └── repositories.py
+    ├── infrastructure
+    │   ├── persistence
+    │   │   ├── config.py
+    │   │   └── init_db.py
+    │   └── grafana
+    │       └── provisioning
+    │           ├── datasources.yaml
+    │           ├── dashboards.yaml
+    │           └── dashboards
+    │               └── network_monitoring.json
+    └── presentation
+        └── network_controller.py
 ```
 
 ---
 
-### ?? Stack Tecnol�gica
+### 🚀 Stack Tecnológica
 - **Backend:** Python (FastAPI)
 - **Database:** PostgreSQL (SQLAlchemy)
 - **Containers:** Docker & Docker-compose
@@ -65,22 +65,23 @@ web-monitoring-agent/
 
 ---
 
-### ?? CI/CD
+### 🚀 CI/CD
 
 Pipeline automatizado usando GitHub Actions:
 
-- Checkout do c�digo
-- Execu��o de testes (pytest)
+- Checkout do código
+- Execução de testes (pytest)
+- Linting (flake8)
 - Build e push da imagem Docker para Docker Hub
-- Deploy autom�tico via SSH
+- Deploy automático via SSH
 
 ---
 
-### ?? Docker-compose
+### 🐳 Docker-compose
 
 Containers utilizados:
 
-- FastAPI (Aplica��o principal)
+- FastAPI (Aplicação principal)
 - PostgreSQL
 - Grafana
 
@@ -118,15 +119,15 @@ volumes:
 
 ---
 
-### ?? Grafana Dashboard
+### 📊 Grafana Dashboard
 
 - Acesse o Grafana em `http://localhost:3000`.
 - Configure o Data Source PostgreSQL utilizando as credenciais definidas.
-- Dashboards pr�-configurados para acompanhar lat�ncia, perdas de pacotes e tempos de resposta.
+- Dashboards pré-configurados para acompanhar latência, perdas de pacotes e tempos de resposta.
 
 ---
 
-### ?? Execu��o Local
+### 🔧 Execução Local
 
 ```bash
 docker-compose up -d
@@ -134,13 +135,10 @@ docker-compose up -d
 
 ---
 
-### ?? Documenta��o adicional
+### 📚 Documentação adicional
 
 - Arquitetura do projeto (Hexagonal)
-- Guia detalhado para deploy e integra��o cont�nua
-- Orienta��es para utiliza��o e personaliza��o dos dashboards
+- Guia detalhado para deploy e integração contínua
+- Orientações para utilização e personalização dos dashboards
 
 ---
-
-
-
