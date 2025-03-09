@@ -1,0 +1,55 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: monitoring
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./src/infrastructure/database/initial.sql:/docker-entrypoint-initdb.d/initial.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d monitoring"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  monitoring-agent:
+    build: .
+    container_name: monitoring-agent
+    environment:
+      - PYTHONPATH=/app/src
+      - DATABASE_URL=postgresql://admin:admin@postgres:5432/monitoring
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+   
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment: {}  # mapeamento vazio
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./src/infrastructure/grafana/provisioning/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
+      - ./src/infrastructure/grafana/provisioning/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml
+      - ./src/infrastructure/grafana/provisioning/dashboards/:/var/lib/grafana/dashboards/
+    depends_on:
+      monitoring-agent:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+   
+
+volumes:
+  postgres-data:
+  grafana-data:

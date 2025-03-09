@@ -1,0 +1,70 @@
+name: CI/CD Monitoramento de Rede
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  test:
+    name: Rodar Testes Unitários
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: test_user
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_DB: test_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U test_user"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Clonar o repositório
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependências
+        run: |
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Rodar testes unitários
+        run: pytest tests/
+
+  deploy:
+    name: Deploy da Aplicação
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Clonar o repositório
+        uses: actions/checkout@v3
+
+      - name: Login no Docker Hub
+        run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+
+      - name: Construir e publicar a imagem Docker
+        run: |
+          docker build -t meu-usuario/monitoramento-agent:latest .
+          docker push meu-usuario/monitoramento-agent:latest
+
+      - name: Deploy no servidor
+        run: |
+          ssh usuario@meu-servidor "docker pull meu-usuario/monitoramento-agent:latest && docker-compose up -d"

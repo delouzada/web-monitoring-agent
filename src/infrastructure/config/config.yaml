@@ -1,0 +1,6 @@
+monitoring:
+  interval_seconds: 30  # Tempo de agendamento (em segundos)
+  sites:
+    - google.com
+    - youtube.com
+    - rnp.br
