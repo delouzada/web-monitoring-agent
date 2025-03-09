@@ -12,7 +12,7 @@ on:
 
 jobs:
   test:
-    name: Rodar Testes Unit�rios
+    name: Rodar Testes Unitários
     runs-on: ubuntu-latest
 
     services:
@@ -31,7 +31,7 @@ jobs:
           --health-retries 5
 
     steps:
-      - name: Clonar o reposit�rio
+      - name: Clonar o repositório
         uses: actions/checkout@v3
 
       - name: Configurar Python
@@ -39,22 +39,25 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Instalar depend�ncias
+      - name: Instalar dependências
         run: |
           pip install -r requirements.txt
           pip install pytest
 
-      - name: Rodar testes unit�rios
-        run: pytest tests/
+      - name: Verificar diretório de testes
+        run: ls -R tests/
 
+      - name: Rodar testes unitários
+        run: pytest tests/
+      
   deploy:
-    name: Deploy da Aplica��o
+    name: Deploy da Aplicação
     runs-on: ubuntu-latest
     needs: test
     if: github.ref == 'refs/heads/main'
 
     steps:
-      - name: Clonar o reposit�rio
+      - name: Clonar o repositório
         uses: actions/checkout@v3
 
       - name: Login no Docker Hub
