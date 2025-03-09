@@ -9,3 +9,8 @@ apscheduler[asyncio]
 ps
 pytest
 psycopg2
+httpx
+pytest-asyncio
+pytest-cov
+pytest-mock
+pytest-sugar
