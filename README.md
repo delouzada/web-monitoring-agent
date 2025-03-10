@@ -164,6 +164,7 @@ docker-compose up -d
 ---
 
 ### 📚 Documentação adicional
+[📄 High-Level Design - HLD](assets/High-Level%20Design%20-%20HLD.pdf)
 
 - Arquitetura do projeto (Hexagonal)
 - Guia detalhado para deploy e integração contínua
