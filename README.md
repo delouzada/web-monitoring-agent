@@ -163,12 +163,16 @@ docker-compose up -d
 
 ---
 
-### 📚 Documentação adicional
+## 📚 Documentação e Repositórios relacionados
 [📄 High-Level Design - HLD](assets/High-Level%20Design%20-%20HLD.pdf)
 
 - Arquitetura do projeto (Hexagonal)
 - Guia detalhado para deploy e integração contínua
 - Orientações para utilização e personalização dos dashboards
+
+- [🔗 Agentes de Markting IA em Python](https://github.com/delouzada/agenciaDeMarketingCREW)
+- [🔗 Sistema de gestão de controle de API](https://github.com/delouzada/puc-sesmt)
+- [🔗 Sistema de gestão de controle de API](https://github.com/delouzada/puc-sesmt)
 
 ---
 
