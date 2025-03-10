@@ -171,7 +171,7 @@ docker-compose up -d
 - Orientações para utilização e personalização dos dashboards
 
 - [🔗 Agentes de Markting IA em Python](https://github.com/delouzada/agenciaDeMarketingCREW)
-- [🔗 Sistema de gestão de controle de API](https://github.com/delouzada/puc-sesmt)
+- [🔗 Sistema de gestão de controle de EPI](https://github.com/delouzada/puc-sesmt)
 
 
 ---
