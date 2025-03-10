@@ -172,7 +172,7 @@ docker-compose up -d
 
 - [🔗 Agentes de Markting IA em Python](https://github.com/delouzada/agenciaDeMarketingCREW)
 - [🔗 Sistema de gestão de controle de API](https://github.com/delouzada/puc-sesmt)
-- [🔗 Sistema de gestão de controle de API](https://github.com/delouzada/puc-sesmt)
+
 
 ---
 
