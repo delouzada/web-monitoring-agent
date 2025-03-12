@@ -8,7 +8,7 @@ apscheduler
 apscheduler[asyncio]
 ps
 pytest
-psycopg2
+psycopg2-binary
 httpx
 pytest-asyncio
 pytest-cov

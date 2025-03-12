@@ -4,7 +4,8 @@ CREATE TABLE IF NOT EXISTS network_test_results (
     latency FLOAT NOT NULL,
     packet_loss FLOAT NOT NULL,
     response_time FLOAT NOT NULL,
-    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status_code INT
 );
 INSERT INTO network_test_results (site, latency, packet_loss, response_time, timestamp, status_code) VALUES
 ('youtube.com', 40.37, 0.1, 0.386846, NOW() - INTERVAL '0 seconds', 200),
